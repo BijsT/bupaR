@@ -20,9 +20,7 @@ activities <- function(eventlog) {
 	output <- eventlog %>%
 		group_by_(activity_id(eventlog)) %>%
 		summarize("absolute_frequency" = n_distinct(activity_instance_classifier)) %>%
-		arrange(-absolute_frequency) %>%
-		mutate(relative_frequency = absolute_frequency/sum(absolute_frequency)) %>%
-		arrange(-relative_frequency)
+		mutate(relative_frequency = absolute_frequency/sum(absolute_frequency))
 
 	return(output)
 }
